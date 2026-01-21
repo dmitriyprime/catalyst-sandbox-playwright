@@ -53,6 +53,7 @@ export default tseslint.config(
       'playwright/no-networkidle': 'error',
       'playwright/no-useless-await': 'warn',
       'playwright/prefer-web-first-assertions': 'warn',
+      'playwright/valid-test-tags': 'off',
     },
   }
 );

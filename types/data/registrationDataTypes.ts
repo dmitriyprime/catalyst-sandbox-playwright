@@ -18,6 +18,6 @@ export interface RegistrationTestData {
   testId: string;
   description: string;
   expectedUrl: RegExp;
-  tags?: string[];
+  tags: string[];
   regData: RegistrationFormData;
 }

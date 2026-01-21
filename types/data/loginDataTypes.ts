@@ -4,5 +4,5 @@ export interface LoginTestData {
   email: string;
   password: string;
   expectedUrl: RegExp;
-  tags?: string[];
+  tags: string[];
 }

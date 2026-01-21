@@ -20,5 +20,6 @@ export const customerRegistrationData: RegistrationTestData[] = [
       country: 'United States',
     },
     expectedUrl: /\/(account\/orders)/i,
+    tags: ['@smoke', '@registration'],
   },
 ];

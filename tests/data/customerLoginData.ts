@@ -18,6 +18,7 @@ export const invalidLoginData: LoginTestData[] = [
     email: 'invalid@test.com',
     password: 'Mc2025Mc@',
     expectedUrl: /login/,
+    tags: ['@negative'],
   },
   {
     testId: 'TEST-003',
@@ -25,6 +26,7 @@ export const invalidLoginData: LoginTestData[] = [
     email: 'kogut.dmitriy@gmail.com',
     password: 'wrongpassword',
     expectedUrl: /login/,
+    tags: ['@negative'],
   },
   {
     testId: 'TEST-004',
@@ -32,5 +34,6 @@ export const invalidLoginData: LoginTestData[] = [
     email: '',
     password: '',
     expectedUrl: /login/,
+    tags: ['@negative'],
   },
 ];
