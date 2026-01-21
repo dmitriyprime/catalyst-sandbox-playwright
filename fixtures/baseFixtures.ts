@@ -1,6 +1,6 @@
-import { test as base } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage/RegisterPage";
+import { test as base } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage/LoginPage';
+import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
 
 type BaseFixtures = {
   loginPage: LoginPage;
@@ -12,8 +12,12 @@ export const test = base.extend<BaseFixtures>({
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
-  registerPage: async ({ page }, use) => {
+  registerPage: async ({ browser }, use) => {
+    // Create a fresh context without storageState (unauthenticated)
+    const context = await browser.newContext({ storageState: undefined });
+    const page = await context.newPage();
     const registerPage = new RegisterPage(page);
     await use(registerPage);
+    await context.close();
   },
 });

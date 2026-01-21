@@ -1,6 +1,6 @@
-import { test } from "../../fixtures/baseFixtures";
+import { test } from '../../fixtures/baseFixtures';
 
-test.use({ storageState: "./storageState.json" });
-test("place order", async ({ loginPage }) => {
+test.use({ storageState: './storageState.json' });
+test('place order', async ({ loginPage }) => {
   await loginPage.navigate();
 });

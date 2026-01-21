@@ -1,12 +1,12 @@
-import { BasePage } from "../BasePage";
-import { RegisterPageLocators } from "./RegisterPageLocators";
-import { RegistrationFormData } from "../../types";
+import { BasePage } from '../BasePage';
+import { RegisterPageLocators } from './RegisterPageLocators';
+import { RegistrationFormData } from '../../types';
 
 export class RegisterPage extends BasePage {
-  readonly url: string = "/register";
+  readonly url: string = '/register';
 
   readonly locators: RegisterPageLocators = new RegisterPageLocators(
-    this.page.locator(".\\@container")
+    this.page.locator('.\\@container')
   );
 
   private async fillFirstName(firstName: string): Promise<void> {
@@ -59,7 +59,7 @@ export class RegisterPage extends BasePage {
 
   private async selectCountry(country: string) {
     await this.locators.countryInput.click();
-    await this.page.getByRole("option", { name: country, exact: true }).click();
+    await this.page.getByRole('option', { name: country, exact: true }).click();
   }
 
   async fillRegistrationForm(regData: RegistrationFormData): Promise<void> {
