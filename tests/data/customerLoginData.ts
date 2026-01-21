@@ -1,6 +1,6 @@
 import { LoginTestData } from '../../types';
 
-export const validLoginData: LoginTestData[] = [
+export const loginData: LoginTestData[] = [
   {
     testId: 'TEST-001',
     description: 'Successful customer login redirects to account orders page',
@@ -9,9 +9,6 @@ export const validLoginData: LoginTestData[] = [
     expectedUrl: /account\/orders/,
     tags: ['@smoke'],
   },
-];
-
-export const invalidLoginData: LoginTestData[] = [
   {
     testId: 'TEST-002',
     description: 'Invalid email shows error message',
