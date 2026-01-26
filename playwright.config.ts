@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://store-2ncob3qhru-1819569.catalyst-sandbox-vercel.store/',
+    baseURL: 'https://store-ho0ptusdjg-1826081.catalyst-sandbox-vercel.store/',
     storageState: './storageState.json',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
