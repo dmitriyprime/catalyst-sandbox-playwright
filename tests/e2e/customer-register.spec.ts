@@ -4,67 +4,159 @@ import { customerRegistrationData } from '../data/customerRegistrationData';
 
 test.describe('Customer Registration via UI', () => {
   test.beforeEach(async ({ registerPage }) => {
-    await registerPage.navigate();
+    await test.step('Navigate to register page', async () => {
+      await registerPage.navigate();
+    });
   });
 
-  test('should display registration form', async ({ registerPage }) => {
-    const page = registerPage.currentPage;
-    await expect(page).toHaveURL(/\/register/);
-    await expect(page.getByRole('heading', { name: /New account/i })).toBeVisible();
-  });
+  test(
+    'TEST-005: Should display registration form',
+    {
+      tag: ['@smoke', '@registration'],
+      annotation: {
+        type: 'info',
+        description: 'Verifies the registration page loads correctly with proper URL and heading',
+      },
+    },
+    async ({ registerPage }) => {
+      await test.step('Verify registration page is displayed', async () => {
+        await expect(registerPage.currentPage).toHaveURL(/\/register/i);
+        await expect(registerPage.locators.newAccountHeading).toBeVisible();
+      });
+    }
+  );
 
   for (const data of customerRegistrationData) {
-    test(`${data.testId}: ${data.description}`, { tag: data.tags }, async ({ registerPage }) => {
+    test(
+      `${data.testId}: ${data.description}`,
+      {
+        tag: data.tags,
+        annotation: { type: 'info', description: data.annotation },
+      },
+      async ({ registerPage }) => {
+        await test.step('Fill in registration credentials', async () => {
+          await registerPage.fillRegistrationForm(data.regData);
+        });
+
+        await test.step('Submit create account form', async () => {
+          await registerPage.clickRegister();
+        });
+
+        await test.step('Verify redirect to account orders page', async () => {
+          await expect(registerPage.currentPage).toHaveURL(data.expectedUrl, {
+            timeout: 10000,
+          });
+        });
+      }
+    );
+  }
+
+  test(
+    'TEST-007: Should show validation error for empty required fields',
+    {
+      tag: ['@smoke', '@registration', '@negative'],
+      annotation: {
+        type: 'info',
+        description:
+          'Verifies that submitting an empty form displays "Required" error for all mandatory fields',
+      },
+    },
+    async ({ registerPage }) => {
+      await test.step('Submit create account form', async () => {
+        await registerPage.clickRegister();
+      });
+
+      await test.step('Verify error validation messages about required fields are present', async () => {
+        const requiredFieldErrors = [
+          registerPage.locators.firstNameInputErrorNotification,
+          registerPage.locators.lastNameInputErrorNotification,
+          registerPage.locators.emailInputErrorNotification,
+          registerPage.locators.passwordInputErrorNotification,
+          registerPage.locators.confirmPasswordInputErrorNotification,
+          registerPage.locators.addressLineOneInputErrorNotification,
+          registerPage.locators.suburbCityInputErrorNotification,
+          registerPage.locators.stateProvinceInputErrorNotification,
+          registerPage.locators.zipPostcodeInputErrorNotification,
+        ];
+
+        for (const errorLocator of requiredFieldErrors) {
+          await expect(errorLocator).toHaveText('Required');
+        }
+      });
+    }
+  );
+
+  test(
+    'TEST-008: Should show error for invalid email format',
+    {
+      tag: ['@smoke', '@registration', '@negative'],
+      annotation: {
+        type: 'info',
+        description:
+          'Verifies that entering an invalid email format (e.g., missing @) triggers a validation error',
+      },
+    },
+    async ({ registerPage }) => {
       await test.step('Fill in registration credentials', async () => {
-        await registerPage.fillRegistrationForm(data.regData);
+        await registerPage.fillRegistrationForm(customerRegistrationData[0].regData);
+      });
+
+      await test.step('Fill in invalid email in Email field', async () => {
+        await registerPage.locators.emailInput.fill('invalid_email.com');
       });
 
       await test.step('Submit create account form', async () => {
         await registerPage.clickRegister();
       });
 
-      await test.step('Verify redirect to account orders page', async () => {
-        await expect(registerPage.currentPage).toHaveURL(data.expectedUrl, {
+      await test.step('Verify customer is still on the account registration page', async () => {
+        await expect(registerPage.currentPage).toHaveURL(/\/(register)/i, {
           timeout: 10000,
         });
       });
-    });
-  }
 
-  test('should show validation error for empty required fields', async ({ registerPage }) => {
-    const page = registerPage.currentPage;
-    // Click submit without filling any fields
-    await page.getByRole('button', { name: /register|create account|sign up|submit/i }).click();
+      await test.step('Verify validation error message is present', async () => {
+        await expect(registerPage.locators.emailInputErrorNotification).toHaveText(
+          'Please enter a valid email.'
+        );
+      });
+    }
+  );
 
-    // Expect validation errors to appear
-    await expect(page.getByText(/required|please enter|cannot be empty/i).first()).toBeVisible();
-  });
+  test(
+    'TEST-009: Should show error for mismatched passwords',
+    {
+      tag: ['@smoke', '@registration', '@negative'],
+      annotation: {
+        type: 'info',
+        description:
+          'Verifies that entering different values in Password and Confirm Password fields triggers a validation error',
+      },
+    },
+    async ({ registerPage }) => {
+      await test.step('Fill in registration credentials', async () => {
+        await registerPage.fillRegistrationForm(customerRegistrationData[0].regData);
+      });
 
-  test('should show error for invalid email format', async ({ registerPage }) => {
-    const page = registerPage.currentPage;
-    await page.getByLabel(/first name/i).fill('John');
-    await page.getByLabel(/last name/i).fill('Doe');
-    await page.getByLabel(/email/i).fill('invalid-email');
-    await page.getByLabel(/^password$/i).fill('SecurePass123!');
-    await page.getByLabel(/confirm password/i).fill('SecurePass123!');
+      await test.step('Fill in different password in Confirm password field', async () => {
+        await registerPage.locators.confirmPasswordInput.fill('DifferentConfirmPassword123');
+      });
 
-    await page.getByRole('button', { name: /register|create account|sign up|submit/i }).click();
+      await test.step('Submit create account form', async () => {
+        await registerPage.clickRegister();
+      });
 
-    await expect(page.getByText(/valid email|invalid email/i)).toBeVisible();
-  });
+      await test.step('Verify customer is still on the account registration page', async () => {
+        await expect(registerPage.currentPage).toHaveURL(/\/(register)/i, {
+          timeout: 10000,
+        });
+      });
 
-  test('should show error for mismatched passwords', async ({ registerPage }) => {
-    const page = registerPage.currentPage;
-    const uniqueEmail = `test.user+${Date.now()}@example.com`;
-
-    await page.getByLabel(/first name/i).fill('John');
-    await page.getByLabel(/last name/i).fill('Doe');
-    await page.getByLabel(/email/i).fill(uniqueEmail);
-    await page.getByLabel(/^password$/i).fill('SecurePass123!');
-    await page.getByLabel(/confirm password/i).fill('DifferentPass456!');
-
-    await page.getByRole('button', { name: /register|create account|sign up|submit/i }).click();
-
-    await expect(page.getByText(/password.*match|passwords.*not match/i)).toBeVisible();
-  });
+      await test.step('Verify validation error message is present', async () => {
+        await expect(registerPage.locators.confirmPasswordInputErrorNotification).toHaveText(
+          'The passwords did not match'
+        );
+      });
+    }
+  );
 });

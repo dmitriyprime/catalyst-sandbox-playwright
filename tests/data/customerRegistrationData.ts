@@ -2,8 +2,10 @@ import { RegistrationTestData } from '../../types';
 
 export const customerRegistrationData: RegistrationTestData[] = [
   {
-    testId: 'TEST-005',
+    testId: 'TEST-006',
     description: 'Should register a new customer successfully',
+    annotation:
+      'Verifies that a new customer can successfully complete registration with valid data and is redirected to the account orders page',
     regData: {
       firstName: 'John',
       lastName: 'Smith',

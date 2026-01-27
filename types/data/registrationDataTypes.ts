@@ -17,6 +17,7 @@ export interface RegistrationFormData {
 export interface RegistrationTestData {
   testId: string;
   description: string;
+  annotation: string | undefined;
   expectedUrl: RegExp;
   tags: string[];
   regData: RegistrationFormData;

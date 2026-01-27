@@ -13,8 +13,7 @@ export const test = base.extend<BaseFixtures>({
     await use(loginPage);
   },
   registerPage: async ({ browser }, use) => {
-    // Create a fresh context without storageState (unauthenticated)
-    const context = await browser.newContext({ storageState: undefined });
+    const context = await browser.newContext({ storageState: { cookies: [], origins: [] } });
     const page = await context.newPage();
     const registerPage = new RegisterPage(page);
     await use(registerPage);
