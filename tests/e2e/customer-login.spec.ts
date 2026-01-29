@@ -16,7 +16,7 @@ test.describe('Customer Login', { tag: ['@authentication'] }, () => {
       `${data.testId}: ${data.description}`,
       {
         tag: data.tags,
-        annotation: { type: 'info', description: data.annotation },
+        annotation: { type: 'description', description: data.annotation },
       },
       async ({ loginPage }) => {
         await test.step('Fill in login credentials', async () => {
@@ -42,7 +42,7 @@ test.describe('Customer Login', { tag: ['@authentication'] }, () => {
       `${data.testId}: ${data.description}`,
       {
         tag: data.tags,
-        annotation: { type: 'info', description: data.annotation },
+        annotation: { type: 'description', description: data.annotation },
       },
       async ({ loginPage }) => {
         await test.step('Fill in login credentials', async () => {
@@ -74,7 +74,7 @@ test.describe('Customer Login', { tag: ['@authentication'] }, () => {
       `${data.testId}: ${data.description}`,
       {
         tag: data.tags,
-        annotation: { type: 'info', description: data.annotation },
+        annotation: { type: 'description', description: data.annotation },
       },
       async ({ loginPage }) => {
         await test.step('Submit login form without credentials', async () => {

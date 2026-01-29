@@ -3,11 +3,11 @@ import { expect } from '@playwright/test';
 import { customerRegistrationData } from '../data/customerRegistrationData';
 
 test(
-  'Should place order successfully',
+  'TEST-010: Should place order successfully',
   {
     tag: ['@smoke', '@checkout'],
     annotation: {
-      type: 'info',
+      type: 'description',
       description:
         'Verifies that a customer can add a product to the cart, apply a coupon, and complete the checkout process successfully.',
     },

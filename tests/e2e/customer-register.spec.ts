@@ -14,7 +14,7 @@ test.describe('Customer Registration via UI', () => {
     {
       tag: ['@smoke', '@registration'],
       annotation: {
-        type: 'info',
+        type: 'description',
         description: 'Verifies the registration page loads correctly with proper URL and heading',
       },
     },
@@ -31,7 +31,7 @@ test.describe('Customer Registration via UI', () => {
       `${data.testId}: ${data.description}`,
       {
         tag: data.tags,
-        annotation: { type: 'info', description: data.annotation },
+        annotation: { type: 'description', description: data.annotation },
       },
       async ({ registerPage }) => {
         await test.step('Fill in registration credentials', async () => {
@@ -56,7 +56,7 @@ test.describe('Customer Registration via UI', () => {
     {
       tag: ['@smoke', '@registration', '@negative'],
       annotation: {
-        type: 'info',
+        type: 'description',
         description:
           'Verifies that submitting an empty form displays "Required" error for all mandatory fields',
       },
@@ -91,7 +91,7 @@ test.describe('Customer Registration via UI', () => {
     {
       tag: ['@smoke', '@registration', '@negative'],
       annotation: {
-        type: 'info',
+        type: 'description',
         description:
           'Verifies that entering an invalid email format (e.g., missing @) triggers a validation error',
       },
@@ -128,7 +128,7 @@ test.describe('Customer Registration via UI', () => {
     {
       tag: ['@smoke', '@registration', '@negative'],
       annotation: {
-        type: 'info',
+        type: 'description',
         description:
           'Verifies that entering different values in Password and Confirm Password fields triggers a validation error',
       },
