@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
-//import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default defineConfig({
   fullyParallel: true,
@@ -11,14 +12,14 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'https://store-ho0ptusdjg-1826081.catalyst-sandbox-vercel.store/',
-    storageState: './storageState.json',
+    baseURL: process.env.BASE_URL,
+    testIdAttribute: 'data-test',
     trace: 'on-first-retry',
   },
   projects: [
     {
       name: 'chromium-e2e',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], storageState: './storageState.json' },
       testDir: './tests/e2e',
     },
     {

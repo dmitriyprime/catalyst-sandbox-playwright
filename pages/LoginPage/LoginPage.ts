@@ -1,7 +1,7 @@
-import { BasePage } from '../BasePage';
+import { BasePageWithHeader } from '../BasePageWithHeader';
 import { LoginPageLocators } from './LoginPageLocators';
 
-export class LoginPage extends BasePage {
+export class LoginPage extends BasePageWithHeader {
   url: string = '/login';
 
   readonly locators: LoginPageLocators = new LoginPageLocators(this.page.locator('.\\@container'));

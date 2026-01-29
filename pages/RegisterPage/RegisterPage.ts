@@ -1,8 +1,8 @@
-import { BasePage } from '../BasePage';
+import { BasePageWithHeader } from '../BasePageWithHeader';
 import { RegisterPageLocators } from './RegisterPageLocators';
 import { RegistrationFormData } from '../../types';
 
-export class RegisterPage extends BasePage {
+export class RegisterPage extends BasePageWithHeader {
   readonly url: string = '/register';
 
   readonly locators: RegisterPageLocators = new RegisterPageLocators(

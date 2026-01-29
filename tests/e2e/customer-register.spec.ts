@@ -110,7 +110,7 @@ test.describe('Customer Registration via UI', () => {
       });
 
       await test.step('Verify customer is still on the account registration page', async () => {
-        await expect(registerPage.currentPage).toHaveURL(/\/(register)/i, {
+        await expect(registerPage.currentPage).toHaveURL(/\/register/i, {
           timeout: 10000,
         });
       });
