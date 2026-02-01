@@ -28,6 +28,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
+      - name: Clean up test state files
+        run: rm -f storageState.json .testuser.json
       - name: Run Playwright tests
         run: npx playwright test
         env:

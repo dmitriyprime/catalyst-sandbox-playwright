@@ -25,6 +25,21 @@ async function globalSetup(config: FullConfig) {
     await registerPage.navigate();
     await registerPage.fillRegistrationForm(customerData[0].regData);
     await registerPage.clickRegister();
+
+    // Wait for navigation and check for error messages
+    await page.waitForLoadState('networkidle');
+
+    const currentUrl = page.url();
+    console.log('Current URL after registration:', currentUrl);
+
+    // Check if there are any error messages on the page
+    const errorMessages = await page
+      .locator('[class*="error"], [class*="Error"], [role="alert"]')
+      .allTextContents();
+    if (errorMessages.length > 0) {
+      console.log('Error messages found:', errorMessages);
+    }
+
     await expect(registerPage.currentPage).toHaveURL(customerData[0].expectedUrl, {
       timeout: 10000,
     });
