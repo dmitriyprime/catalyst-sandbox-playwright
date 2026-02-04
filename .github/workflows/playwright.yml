@@ -4,6 +4,8 @@ on:
     branches: [main]
   push:
     branches: [main]
+  schedule:
+    - cron: '0 22 * * *'
   workflow_dispatch:
 
 permissions:
@@ -47,7 +49,7 @@ jobs:
           path: playwright-report/
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && always()
     needs: test
     runs-on: ubuntu-latest
     steps:
