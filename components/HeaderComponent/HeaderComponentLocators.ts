@@ -11,4 +11,11 @@ export class HeaderComponentLocators extends BaseComponent {
   readonly cartLink: Locator = this.baseLocator.getByRole('link', { name: 'Cart' });
 
   readonly cartItemCount: Locator = this.cartLink.locator('span, div').filter({ hasText: /^\d+$/ });
+
+  readonly searchInput: Locator = this.baseLocator.getByPlaceholder(/search/i);
+
+  readonly searchSubmitButton: Locator = this.baseLocator.getByRole('button', {
+    name: 'Search',
+    exact: true,
+  });
 }

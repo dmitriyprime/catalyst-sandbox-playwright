@@ -1,4 +1,4 @@
-import { RegistrationFormData } from '../../types/data/registrationDataTypes';
+import { RegistrationFormData } from '../types/data/registrationDataTypes';
 
 export function buildRegistrationFormData(
   regData: RegistrationFormData,

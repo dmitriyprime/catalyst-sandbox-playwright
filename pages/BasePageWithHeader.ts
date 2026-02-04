@@ -10,6 +10,6 @@ export abstract class BasePageWithHeader extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.header = new HeaderComponent(page);
+    this.header = new HeaderComponent(this.page.locator('body'));
   }
 }
