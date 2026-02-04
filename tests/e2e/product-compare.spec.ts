@@ -2,6 +2,8 @@ import { test } from '../../fixtures/baseFixtures';
 import { expect } from '@playwright/test';
 
 test.describe('Product Compare', { tag: ['@e2e', '@compare'] }, () => {
+  test.use({ storageState: { cookies: [], origins: [] } });
+
   test(
     'TEST-E2E-005: Should compare multiple products successfully',
     {

@@ -8,7 +8,7 @@ export class HeaderComponentLocators extends BaseComponent {
     name: 'Open search popup',
   });
 
-  readonly cartLink: Locator = this.baseLocator.getByRole('link', { name: 'Cart' });
+  readonly cartLink: Locator = this.baseLocator.getByRole('link', { name: 'Cart', exact: true });
 
   readonly cartItemCount: Locator = this.cartLink.locator('span, div').filter({ hasText: /^\d+$/ });
 
