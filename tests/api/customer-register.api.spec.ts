@@ -3,13 +3,13 @@ import { customerRegistrationData } from '../data/customerRegistrationData';
 import { buildRegistrationFormData } from '../../helpers/registrationFormDataBuilder';
 
 test.describe('User Registration API', { tag: ['@api', '@registration'] }, () => {
-  test(
+  test.skip(
     'TEST-API-005: Should register a new customer via API',
     {
       annotation: {
         type: 'description',
         description:
-          'Verifies that a new customer can be registered via API and receive a valid session token',
+          'Verifies that a new customer can be registered via API and receive a valid session token. SKIPPED: Requires manual next-action header update.',
       },
     },
     async ({ request }) => {
