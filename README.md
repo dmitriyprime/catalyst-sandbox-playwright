@@ -1,10 +1,8 @@
 # Catalyst Sandbox Playwright
 
-[![Playwright Tests](https://github.com/dmitriyprime/catalyst-sandbox-playwright/actions/workflows/playwright.yml/badge.svg)](https://github.com/dmitriyprime/catalyst-sandbox-playwright/actions/workflows/playwright.yml)
-
 End-to-end and API test automation framework for [BigCommerce Catalyst](https://www.bigcommerce.com/solutions/headless-commerce/) storefront using Playwright.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
