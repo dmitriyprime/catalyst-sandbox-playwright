@@ -26,7 +26,7 @@ test.describe('User Registration API', { tag: ['@api', '@registration'] }, () =>
           headers: {
             'content-type': `multipart/form-data; boundary=----${boundary}`,
             accept: 'text/x-component',
-            'next-action': '6058df95893a21269f6421e41f11295237300f8f00',
+            'next-action': '704a2a96ce70cc7f1348f3e365dbdc7631460c1f57',
           },
           data: formData,
         });

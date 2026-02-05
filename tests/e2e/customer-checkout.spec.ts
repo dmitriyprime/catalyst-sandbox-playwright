@@ -30,9 +30,9 @@ test.describe('Customer checkout', { tag: ['@checkout'] }, () => {
         });
         await expect(cartPage.locators.cartSubtotal).toHaveText('$30.00');
         await expect(cartPage.locators.cartTotal).toHaveText('$30.00');
-        await cartPage.applyCouponCode('W044T0GC3279');
+        await cartPage.applyCouponCode('C0OJ1XL08');
         await expect(cartPage.locators.cartSubtotal).toHaveText('$30.00');
-        await expect(cartPage.locators.cartTotal).toHaveText('$28.50');
+        await expect(cartPage.locators.cartTotal).toHaveText('$27.00');
       });
 
       await test.step('Proceed to checkout', async () => {

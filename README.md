@@ -39,7 +39,7 @@ npx playwright install --with-deps chromium
 
 1. Create a `.env` file in the project root:
 ```env
-BASE_URL=https://store-ho0ptusdjg-1826081.catalyst-sandbox-vercel.store/
+BASE_URL=https://store-8dft1pkipq-1829373.catalyst-sandbox-vercel.store/
 ```
 
 2. The `storageState.json` and `.testuser.json` files are auto-generated during the first test run via `globalSetup.ts`.
