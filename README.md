@@ -100,7 +100,7 @@ The project uses GitHub Actions for continuous integration:
 - **Triggers**: Push/PR to main, scheduled daily at 22:00 UTC, manual dispatch
 - **Test Execution**: Runs all tests with 2 retries on failure
 - **Reporting**: HTML reports uploaded as artifacts and deployed to GitHub Pages
-- **Parallel Execution**: Single worker in CI (shared auth state), parallel locally
+- **Parallel Execution**: 2 workers for parallel test execution
 
 ## Development
 
