@@ -3,13 +3,13 @@ import { customerRegistrationData } from '../data/customerRegistrationData';
 import { buildRegistrationFormData } from '../../helpers/registrationFormDataBuilder';
 
 test.describe('User Registration API', { tag: ['@api', '@registration'] }, () => {
-  test.skip(
+  test(
     'TEST-API-005: Should register a new customer via API',
     {
       annotation: {
         type: 'description',
         description:
-          'Verifies that a new customer can be registered via API and receive a valid session token. SKIPPED: Requires manual next-action header update.',
+          'Verifies that a new customer can be registered via API and receive a valid session token.',
       },
     },
     async ({ request }) => {
@@ -27,6 +27,8 @@ test.describe('User Registration API', { tag: ['@api', '@registration'] }, () =>
             'content-type': `multipart/form-data; boundary=----${boundary}`,
             accept: 'text/x-component',
             'next-action': '704a2a96ce70cc7f1348f3e365dbdc7631460c1f57',
+            'next-router-state-tree':
+              '%5B%22%22%2C%7B%22children%22%3A%5B%5B%22locale%22%2C%22en%22%2C%22d%22%5D%2C%7B%22children%22%3A%5B%22(default)%22%2C%7B%22children%22%3A%5B%22(auth)%22%2C%7B%22children%22%3A%5B%22register%22%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%5D%7D%2Cnull%2Cnull%5D%7D%2Cnull%2Cnull%2Ctrue%5D%7D%2Cnull%2Cnull%5D%7D%2Cnull%2Cnull%2Ctrue%5D%7D%2Cnull%2Cnull%5D',
           },
           data: formData,
         });

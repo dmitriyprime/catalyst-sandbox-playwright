@@ -59,9 +59,13 @@ export function buildRegistrationFormData(
     '',
     countryCode,
     `------${boundary}`,
+    `Content-Disposition: form-data; name="1_countryCode_display"`,
+    '',
+    countryCode,
+    `------${boundary}`,
     `Content-Disposition: form-data; name="0"`,
     '',
-    `[{"fields":[[{"id":"4","type":"text","name":"firstName","label":"First Name","required":true},{"id":"5","type":"text","name":"lastName","label":"Last Name","required":true}],{"id":"1","type":"email","name":"email","label":"Email Address","required":true},{"id":"2","type":"password","name":"password","label":"Password","required":true},{"id":"3","type":"confirm-password","name":"confirmPassword","label":"Confirm Password","required":true},{"id":"6","type":"text","name":"company","label":"Company Name","required":false},{"id":"7","type":"text","name":"phone","label":"Phone Number","required":false},{"id":"8","type":"text","name":"address1","label":"Address Line 1","required":true},{"id":"9","type":"text","name":"address2","label":"Address Line 2","required":false},[{"id":"10","type":"text","name":"city","label":"Suburb/City","required":true},{"id":"12","type":"text","name":"stateOrProvince","label":"State/Province","required":true}],[{"id":"13","type":"text","name":"postalCode","label":"Zip/Postcode","required":true},{"id":"11","type":"select","name":"countryCode","label":"Country","required":true,"options":[{"label":"United States","value":"US"}]}]],"lastResult":null},"$K1"]`,
+    `[{"fields":[[{"id":"4","type":"text","name":"firstName","label":"First Name","required":true},{"id":"5","type":"text","name":"lastName","label":"Last Name","required":true}],{"id":"1","type":"email","name":"email","label":"Email Address","required":true},{"id":"2","type":"password","name":"password","label":"Password","required":true},{"id":"3","type":"confirm-password","name":"confirmPassword","label":"Confirm Password","required":true},{"id":"6","type":"text","name":"company","label":"Company Name","required":false},{"id":"7","type":"text","name":"phone","label":"Phone Number","required":false},{"id":"8","type":"text","name":"address1","label":"Address Line 1","required":true},{"id":"9","type":"text","name":"address2","label":"Address Line 2","required":false},[{"id":"10","type":"text","name":"city","label":"Suburb/City","required":true},{"id":"12","type":"text","name":"stateOrProvince","label":"State/Province","required":true}],[{"id":"13","type":"text","name":"postalCode","label":"Zip/Postcode","required":true},{"id":"11","type":"select","name":"countryCode","label":"Country","required":true}]],"passwordComplexity":{"minimumNumbers":1,"minimumPasswordLength":7,"minimumSpecialCharacters":1,"requireLowerCase":false,"requireNumbers":false,"requireSpecialCharacters":false,"requireUpperCase":false}},{"lastResult":null},"$K1"]`,
     `------${boundary}--`,
   ].join('\r\n');
 }
